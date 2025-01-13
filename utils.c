@@ -56,3 +56,21 @@ int	count_words(char *str)
 	printf ("words :%d\n", count);
 	return (count);
 }
+
+int	check_double(t_list *begin)
+{
+	t_list	*p;
+
+	while (begin != NULL)
+	{
+		p = begin->next;
+		while (p != NULL)
+		{
+			if (p->value == begin->value)
+				return (1);
+			p = p->next;
+		}
+		begin = begin->next;
+	}
+	return (0);
+}

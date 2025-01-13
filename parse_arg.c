@@ -64,5 +64,7 @@ t_list	*parse_arg(char **av)
 	begin = fill_list(av, node, begin);
 	if (begin == NULL)
 		exit(1);
+	if (check_double(begin))
+		atoi_error(&begin);
 	return (begin);
 }

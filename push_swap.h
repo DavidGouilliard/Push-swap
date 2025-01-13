@@ -31,6 +31,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	print_error(void);
 void	error_malloc(t_list **begin);
 void	atoi_error(t_list **begin);
+int		check_double(t_list *begin);
 
 int		push_swap(int ac, char **av);
 t_list	*parse_arg(char **av);
