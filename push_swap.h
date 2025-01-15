@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:10:07 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/07 15:40:59 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:32:51 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,23 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 void	ft_lstclear(t_list **lst);
 
+void	swap(t_list *stack);
+void	swap_a(t_list *stack_a);
+void	swap_b(t_list *stack_b);
+void	swap_ab(t_list *stack_a, t_list *stack_b);
+
+void	update_index(t_list **stack);
+void	push(t_list **stack1, t_list **stack2);
+void	push_a(t_list **stack_a, t_list **stack_b);
+void	push_b(t_list **stack_a, t_list **stack_b);
+
+void	rotate(t_list *stack);
+void	rotate_a(t_list *stack_a);
+void	rotate_b(t_list *stack_b);
+void	rotate_ab(t_list *stack_a, t_list *stack_b);
+
+void	rev_rotate(t_list *stack);
+void	rev_rotate_a(t_list *stack_a);
+void	rev_rotate_b(t_list *stack_b);
+void	rev_rotate_ab(t_list *stack_a, t_list *stack_b);
 #endif

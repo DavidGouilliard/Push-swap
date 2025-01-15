@@ -1,4 +1,4 @@
-SRC		=	lst_utils.c  parse_arg.c  parse_arg_utils.c  push_swap_main.c utils.c
+SRC		=	lst_utils.c  parse_arg.c  parse_arg_utils.c  push_swap_main.c utils.c swap.c push.c rotate.c rev_rotate.c
 
 CFLAGS	=	-Wall -Werror -Wextra -I.
 
@@ -9,7 +9,7 @@ NAME	=	push_swap
 all:	${NAME}
 
 ${NAME}:	${OBJ}
-			cc -Wall -Wextra -Werror ${OBJ} -o ${NAME}
+			cc -Wall -Wextra -Werror -g3 ${OBJ} -o ${NAME}
 clean:
 			rm -f ${OBJ}
 
