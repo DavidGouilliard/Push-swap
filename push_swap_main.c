@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:09:51 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/15 16:45:06 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:34:10 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 	stack_a = parse_arg(av);
 	push_b(&stack_a, &stack_b);
 	push_b(&stack_a, &stack_b);
-	rev_rotate_ab(stack_a, stack_b);
+	rotate_ab(stack_a, stack_b);
 	p = stack_a;
 	printf("stack_a\n");
 	while (p != NULL)
