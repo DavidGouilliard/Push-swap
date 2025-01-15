@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:31:59 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/15 15:10:39 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:02:48 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,24 @@ void	rev_rotate(t_list *stack)
 
 void	rev_rotate_a(t_list *stack_a)
 {
+	if (!stack_a)
+		return ;
 	rev_rotate(stack_a);
 	ft_putstr_fd("rra\n", 1);
 }
 
 void	rev_rotate_b(t_list *stack_b)
 {
+	if (!stack_b)
+		return ;
 	rev_rotate(stack_b);
 	ft_putstr_fd("rrb\n", 1);
 }
 
 void	rev_rotate_ab(t_list *stack_a, t_list *stack_b)
 {
-
+	if (!stack_a || !stack_b)
+		return ;
 	rev_rotate(stack_b);
 	rev_rotate(stack_a);
 	ft_putstr_fd("rrr\n", 1);

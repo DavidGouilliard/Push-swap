@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:49:51 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/15 16:35:02 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:09:00 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	push(t_list **stack1, t_list **stack2)
 	t_list	*p;
 	t_list	*new_node;
 
-	if (!stack1)
+	if (!*stack1)
 		return ;
 	new_node = ft_lstnew(0, (*stack1)->value);
 	if (stack2 == NULL)
@@ -50,12 +50,16 @@ void	push(t_list **stack1, t_list **stack2)
 
 void	push_a(t_list **stack_a, t_list **stack_b)
 {
+	if (!*stack_b)
+		return ;
 	push(stack_b, stack_a);
 	ft_putstr_fd("pa\n", 1);
 }
 
 void	push_b(t_list **stack_a, t_list **stack_b)
 {
+	if (!*stack_a)
+		return ;
 	push(stack_a, stack_b);
 	ft_putstr_fd("pb\n", 1);
 }

@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:41:15 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/15 17:42:52 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:59:17 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	check_str(char **str)
 			if (!ft_isdigit(str[i][j]) && !ft_isspace(str[i][j])
 				&& !ft_issign(str[i][j]))
 				print_error();
-			if ((str[i][j] == '+' || str[i][j] == '-') 
+			if ((str[i][j] == '+' || str[i][j] == '-')
 				&& !ft_isdigit(str[i][j + 1]))
 				print_error();
 			if (ft_isdigit(str[i][j]) && count == 0)
@@ -80,8 +80,6 @@ int	ft_atoi(const char *str, int *i, t_list **begin)
 			sign *= -1;
 		++*i;
 	}
-	if (!ft_isdigit(str[*i]))
-		atoi_error(begin);
 	while (str[*i] >= '0' && str[*i] <= '9')
 	{
 		res = res * 10 + str[*i] - '0';

@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:32:27 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/15 13:17:25 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:00:28 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	swap(t_list *stack)
 
 void	swap_a(t_list *stack_a)
 {
-
 	if (ft_lstsize(stack_a) < 2)
 		return ;
 	swap(stack_a);
@@ -32,7 +31,6 @@ void	swap_a(t_list *stack_a)
 
 void	swap_b(t_list *stack_b)
 {
-
 	if (ft_lstsize(stack_b) < 2)
 		return ;
 	swap(stack_b);
