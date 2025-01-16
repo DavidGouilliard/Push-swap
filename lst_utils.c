@@ -34,14 +34,17 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 		*lst = new;
 }
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstlast(t_list **lst)
 {
-	if (lst != NULL)
+	t_list	*p;
+
+	p = *lst;
+	if (p != NULL)
 	{
-		while (lst->next != NULL)
-			lst = lst->next;
+		while (p->next != NULL)
+			p = p->next;
 	}
-	return (lst);
+	return (p);
 }
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
@@ -54,19 +57,19 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 	else
 	{
-		p = ft_lstlast(*lst);
+		p = ft_lstlast(lst);
 		p->next = new;
 	}
 }
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list **lst)
 {
 	t_list	*p;
 	int		i;
 
-	if (!lst)
+	if (!*lst)
 		return (0);
-	p = lst;
+	p = *lst;
 	i = 0;
 	while (p)
 	{

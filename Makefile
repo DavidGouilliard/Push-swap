@@ -1,4 +1,4 @@
-SRC		=	lst_utils.c  parse_arg.c  parse_arg_utils.c  push_swap_main.c utils.c swap.c push.c rotate.c rev_rotate.c
+SRC		=	lst_utils.c  parse_arg.c  parse_arg_utils.c  push_swap_main.c utils.c swap.c push.c rotate.c rev_rotate.c sort.c
 
 CFLAGS	=	-Wall -Werror -Wextra -I.
 
