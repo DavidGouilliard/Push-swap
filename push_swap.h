@@ -69,4 +69,11 @@ void	rev_rotate_b(t_list **stack_b);
 void	rev_rotate_ab(t_list **stack_a, t_list **stack_b);
 
 void	choose_sort(t_list **stack_a, t_list **stack_b);
+void	sort_two(t_list **stack_a);
+void	sort_three(t_list **stack_a);
+void	sort_four(t_list **stack_a, t_list **stack_b);
+void	sort_five(t_list **stack_a, t_list **stack_b);
+void	big_sort(t_list **stack_a, t_list **stack_b, int size);
+int		check_sorted(t_list **stack_a);
+
 #endif

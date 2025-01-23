@@ -12,6 +12,20 @@
 
 #include "push_swap.h"
 
+int	check_sorted(t_list **stack_a)
+{
+	t_list	*p;
+
+	p = *stack_a;
+	while (p->next)
+	{
+		if (p->value > p->next->value)
+			return (0);
+		p = p->next;
+	}
+	return (1);
+}
+
 void	sort_two(t_list **stack_a)
 {
 	if ((*stack_a)->value > (*stack_a)->next->value)
@@ -33,6 +47,12 @@ void	sort_three(t_list **stack_a)
 
 void	sort_four(t_list **stack_a, t_list **stack_b)
 {
+	if (check_sorted(stack_a))
+		return ;
+	if ((*stack_a)->value > (*stack_a)->next->next->next->value)
+		rotate_a(stack_a);
+	if ((*stack_a)->value > (*stack_a)->next->value)
+		swap_a(stack_a);
 	push_b(stack_a, stack_b);
 	sort_three(stack_a);
 	push_a(stack_a, stack_b);
@@ -40,10 +60,14 @@ void	sort_four(t_list **stack_a, t_list **stack_b)
 		rotate_a(stack_a);
 	if ((*stack_a)->value > (*stack_a)->next->value)
 		swap_a(stack_a);
+	if (!check_sorted(stack_a))
+		sort_four(stack_a, stack_b);
 }
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
+	if (check_sorted(stack_a))
+		return ;
 	push_b(stack_a, stack_b);
 	push_b(stack_a, stack_b);
 	sort_three(stack_a);
@@ -53,10 +77,12 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	if ((*stack_a)->value > (*stack_a)->next->value)
 		swap_a(stack_a);
 	push_a(stack_a, stack_b);
-	if ((*stack_a)->value > (*stack_a)->next->next->next->value)
+	if ((*stack_a)->value > (*stack_a)->next->next->next->next->value)
 		rotate_a(stack_a);
 	if ((*stack_a)->value > (*stack_a)->next->value)
 		swap_a(stack_a);
+	if (!check_sorted(stack_a))
+		sort_four(stack_a, stack_b);
 }
 
 void	choose_sort(t_list **stack_a, t_list **stack_b)
@@ -70,6 +96,8 @@ void	choose_sort(t_list **stack_a, t_list **stack_b)
 		sort_three(stack_a);
 	if (size == 4)
 		sort_four(stack_a, stack_b);
-	if (size == 5)
-		sort_five(stack_a, stack_b);
+	/*if (size == 5)*/
+	/*	sort_five(stack_a, stack_b);*/
+	if (size > 4)
+		big_sort(stack_a, stack_b, size);
 }

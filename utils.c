@@ -53,7 +53,6 @@ int	count_words(char *str)
 		else
 			i++;
 	}
-	printf ("words :%d\n", count);
 	return (count);
 }
 
