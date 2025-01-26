@@ -78,5 +78,6 @@ int		check_sorted(t_list **stack_a);
 void	quick_sort(t_list **stack);
 void	quick_sort_b(t_list **stack);
 void	double_sort(t_list **stack_a, t_list **stack_b);
+int		get_biggest(t_list **stack_a);
 
 #endif

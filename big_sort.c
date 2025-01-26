@@ -12,13 +12,28 @@
 
 #include "push_swap.h"
 
+int	get_lowest(t_list **stack_a)
+{
+	int		biggest;
+	t_list	*p;
+
+	p = *stack_a;
+	biggest = p->value;
+	while (p->next)
+	{
+		if (p->value > p->next->value)
+			biggest = p->next->value;
+		p = p->next;
+	}
+	return (biggest);
+}
 void	quick_sort(t_list **stack)
 {
 	t_list *last;
 
 	last = ft_lstlast(stack);
-	/*if ((*stack)->value > last->value && last->value < (*stack)->next->value)*/
-	/*	rev_rotate_a(stack);*/
+	if ((*stack)->value > last->value && last->value < (*stack)->next->value)
+		rev_rotate_a(stack);
 	if ((*stack)->value > last->value)
 		rotate_a(stack);
 	if ((*stack)->value > (*stack)->next->value)
@@ -30,44 +45,86 @@ void	quick_sort_b(t_list **stack)
 	t_list *last;
 
 	last = ft_lstlast(stack);
-	/*if ((*stack)->value > last->value && last->value > (*stack)->next->value)*/
-	/*	rev_rotate_b(stack);*/
+	if ((*stack)->value > last->value && last->value > (*stack)->next->value)
+		rev_rotate_b(stack);
 	if ((*stack)->value < last->value)
 		rotate_b(stack);
 	if ((*stack)->value < (*stack)->next->value)
 		swap_b(stack);
 }
 	
+void	finish_sort(t_list **stack_a, t_list **stack_b)
+{
+	int		biggest;
+	int		count;
+
+	count = 0;
+	while (!check_sorted(stack_a))
+	{
+		biggest = get_biggest(stack_a);
+		while ((*stack_a)->value != biggest)
+		{
+			rotate_a(stack_a);
+		}
+		push_b(stack_a, stack_b);
+		count++;
+	}
+	while (count >= 0)
+	{
+		push_a(stack_a, stack_b);
+		count--;
+	}
+	while (!check_sorted(stack_a))
+		rev_rotate(stack_a);
+}
+
 void	big_sort(t_list **stack_a, t_list **stack_b, int size)
 {
 	int	count;
+	int	lowest;
 
 	count = 0;
 	if (check_sorted(stack_a))
 		return ;
-	while (count < size - 3)
+
+	count = 0;
+	while (count < size)
 	{
-		if (count >= 2)
-		{
-			double_sort(stack_a, stack_b);
-			quick_sort_b(stack_b);
-		}
+		lowest = get_lowest(stack_a);
+		while ((*stack_a)->value != lowest)
+			rotate_a(stack_a);
 		push_b(stack_a, stack_b);
-		quick_sort(stack_a);
 		count++;
 	}
-	sort_three(stack_a);
 	while (count >= 0)
 	{
-		if (count > 2)
-		{
-			double_sort(stack_a, stack_b);
-			quick_sort_b(stack_b);
-		}
 		push_a(stack_a, stack_b);
-		quick_sort(stack_a);
 		count--;
 	}
+	/*while (count < size - 3)*/
+	/*{*/
+	/*	if (count >= 2)*/
+	/*	{*/
+	/*		double_sort(stack_a, stack_b);*/
+	/*		quick_sort_b(stack_b);*/
+	/*	}*/
+	/*	push_b(stack_a, stack_b);*/
+	/*	quick_sort(stack_a);*/
+	/*	count++;*/
+	/*}*/
+	/*sort_three(stack_a);*/
+	/*while (count >= 0)*/
+	/*{*/
+	/*	if (count > 2)*/
+	/*	{*/
+	/*		double_sort(stack_a, stack_b);*/
+	/*		quick_sort_b(stack_b);*/
+	/*	}*/
+	/*	push_a(stack_a, stack_b);*/
+	/*	quick_sort(stack_a);*/
+	/*	count--;*/
+	/*}*/
 	if (!check_sorted(stack_a))
-		return (big_sort(stack_a, stack_b, size));
+		printf("not sorted\n");
+	/*	big_sort(stack_a, stack_b, size);*/
 }
