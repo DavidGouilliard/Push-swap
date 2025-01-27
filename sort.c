@@ -120,24 +120,26 @@ void	double_sort(t_list **stack_a, t_list **stack_b)
 	last_b = ft_lstlast(stack_b);
 	if ((*stack_a)->value > last_a->value && (*stack_b)->value < last_b->value)
 		rotate_ab(stack_a, stack_b);
-	if ((*stack_a)->value > (*stack_a)->next->value 
+	if ((*stack_a)->value > (*stack_a)->next->value
 		&& (*stack_b)->value < (*stack_b)->next->value)
 		swap_ab(stack_a, stack_b);
 }
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
+	if (check_sorted(stack_a))
+		return ;
 	push_b(stack_a, stack_b);
 	quick_sort(stack_a);
 	push_b(stack_a, stack_b);
 	double_sort(stack_a, stack_b);
 	sort_three(stack_a);
 	push_b(stack_a, stack_b);
+	double_sort(stack_a, stack_b);
 	rev_sort_three(stack_b);
-	double_sort(stack_a, stack_b);
 	push_a(stack_a, stack_b);
-	sort_three(stack_a);
 	double_sort(stack_a, stack_b);
+	sort_three(stack_a);
 	push_a(stack_a, stack_b);
 	quick_sort(stack_a);
 	push_a(stack_a, stack_b);
