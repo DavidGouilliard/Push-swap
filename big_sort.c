@@ -21,7 +21,7 @@ int	get_lowest(t_list **stack_a)
 	lowest = p->value;
 	while (p->next)
 	{
-		if (p->value > p->next->value)
+		if (lowest > p->next->value)
 			lowest = p->next->value;
 		p = p->next;
 	}
@@ -31,14 +31,19 @@ int	get_lowest(t_list **stack_a)
 int	get_index(t_list **stack_a)
 {
 	int		index;
+	int		lowest;
 	t_list	*p;
 
 	p = *stack_a;
 	index = p->index;
+	lowest = p->value;
 	while (p->next)
 	{
-		if (p->value > p->next->value)
+		if (lowest > p->next->value)
+		{
 			index = p->next->index;
+			lowest = p->next->value;
+		}
 		p = p->next;
 	}
 	return (index);
@@ -94,6 +99,8 @@ void	finish_sort(t_list **stack_a, t_list **stack_b)
 		rev_rotate(stack_a);
 }
 
+
+
 void	big_sort(t_list **stack_a, t_list **stack_b, int size)
 {
 	int	count;
@@ -109,9 +116,9 @@ void	big_sort(t_list **stack_a, t_list **stack_b, int size)
 		index = get_index(stack_a);
 		while ((*stack_a)->value != lowest)
 		{
-			if(index <= size / 2)
+			if(index < (size - count) / 2)
 				rotate_a(stack_a);
-			else if (index > size / 2)
+			else if (index >= (size - count) / 2)
 				rev_rotate_a(stack_a);
 		}
 		push_b(stack_a, stack_b);

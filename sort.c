@@ -101,10 +101,10 @@ int	get_biggest(t_list **stack_a)
 	t_list	*p;
 
 	p = *stack_a;
-	biggest = p->value;
+	biggest = (*stack_a)->value;
 	while (p->next)
 	{
-		if (p->value < p->next->value)
+		if (biggest < p->next->value)
 			biggest = p->next->value;
 		p = p->next;
 	}
