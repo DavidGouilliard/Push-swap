@@ -19,11 +19,17 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 typedef struct s_list
 {
 	int				index;
 	int				value;
+	int				target;
+	int				cost;
+	bool			above_m;
+	bool			to_push;
+
 	struct s_list	*next;
 }	t_list;
 
@@ -79,5 +85,17 @@ void	quick_sort(t_list **stack);
 void	quick_sort_b(t_list **stack);
 void	double_sort(t_list **stack_a, t_list **stack_b);
 int		get_biggest(t_list **stack_a);
+
+
+void	sort_b(t_list ** stack_a, t_list **stack_b);
+int		get_low(t_list **stack_a);
+int		get_big(t_list **stack_a);
+
+void	greedy_sort(t_list **stack_a, t_list **stack_b, int size);
+void	to_push_a(t_list **stack_a, t_list **stack_b);
+void	push_opp_a(t_list **stack_a, t_list *p);
+void	set_cost_a(t_list **stack_a, t_list **stack_b);
+int		find_cost_a(t_list **p, t_list **stack_a, t_list **stack_b);
+t_list	*set_to_push(t_list **stack_a);
 
 #endif

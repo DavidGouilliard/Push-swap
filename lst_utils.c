@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:19:16 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/07 13:26:25 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:59:29 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ t_list	*ft_lstnew(int index, int value)
 		return (NULL);
 	new->index = index;
 	new->value = value;
+	new->cost = 0;
+	new->above_m = 0;
+	new->to_push = 0;
 	new->next = NULL;
 	return (new);
 }

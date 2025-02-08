@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:49:51 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/15 18:09:00 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:35:05 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void	update_index(t_list **stack)
 {
 	int		i;
+	int		size;
 	t_list	*p;
 
 	i = 0;
 	p = *stack;
+	size = ft_lstsize(stack);
 	while (p != NULL)
 	{
 		p->index = i;
+		if (i <= size / 2)
+			p->above_m = 1;
 		i++;
 		p = p->next;
 	}
