@@ -26,6 +26,8 @@ void	update_index(t_list **stack)
 		p->index = i;
 		if (i <= size / 2)
 			p->above_m = 1;
+		else
+			p->above_m = 0;
 		i++;
 		p = p->next;
 	}

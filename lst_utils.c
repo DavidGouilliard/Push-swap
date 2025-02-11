@@ -21,6 +21,7 @@ t_list	*ft_lstnew(int index, int value)
 		return (NULL);
 	new->index = index;
 	new->value = value;
+	new->target = 0;
 	new->cost = 0;
 	new->above_m = 0;
 	new->to_push = 0;

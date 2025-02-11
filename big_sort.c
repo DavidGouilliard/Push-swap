@@ -37,10 +37,10 @@ int	get_big(t_list **stack_a)
 
 	p = *stack_a;
 	big = p->value;
-	while (p->next)
+	while (p)
 	{
-		if (big < p->next->value)
-			big = p->next->value;
+		if (big < p->value)
+			big = p->value;
 		p = p->next;
 	}
 	return (big);
@@ -48,18 +48,18 @@ int	get_big(t_list **stack_a)
 
 int	get_low(t_list **stack_a)
 {
-	int		big;
+	int		low;
 	t_list	*p;
 
 	p = *stack_a;
-	big = p->value;
-	while (p->next)
+	low = p->value;
+	while (p)
 	{
-		if (big > p->next->value)
-			big = p->next->value;
+		if (low > p->value)
+			low = p->value;
 		p = p->next;
 	}
-	return (big);
+	return (low);
 }
 
 int	get_index_b(t_list **stack_a)
@@ -80,7 +80,7 @@ int	get_index_b(t_list **stack_a)
 		}
 		p = p->next;
 	}
-	return (big);
+	return (index);
 }
 
 int	get_index_a(t_list **stack_a)
@@ -101,7 +101,7 @@ int	get_index_a(t_list **stack_a)
 		}
 		p = p->next;
 	}
-	return (big);
+	return (index);
 }
 
 int	get_index(t_list **stack_a, int start, int end)
@@ -244,12 +244,12 @@ void	big_sort(t_list **stack_a, t_list **stack_b, int size)
 		return ;
 	push_b(stack_a, stack_b);
 	/*printf("%d\n", get_index(stack_a, size - size / 4 , size));*/
-	sort_chunk(stack_a, stack_b, size);
+	/*sort_chunk(stack_a, stack_b, size);*/
 	size = ft_lstsize(stack_a);
 	while (count < size)
 	{
 		lowest = get_big(stack_a);
-		index = get_index_b(stack_a);
+		index = get_index_a(stack_a);
 		while ((*stack_a)->value != lowest)
 		{
 			if(index < (size - count) / 2)
