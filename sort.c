@@ -159,7 +159,8 @@ void	choose_sort(t_list **stack_a, t_list **stack_b)
 	if (size == 4)
 		sort_four(stack_a, stack_b);
 	if (size == 5)
-		sort_five(stack_a, stack_b);
+		greedy_sort(stack_a, stack_b, size);
+		/*sort_five(stack_a, stack_b);*/
 	if (size > 5 && size < 50)
 		big_sort(stack_a, stack_b, size);
 	if (size > 50)

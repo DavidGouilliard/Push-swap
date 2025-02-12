@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-t_list	*set_to_push(t_list **stack_a)
+t_list	*set_to_push(t_list **stack)
 {
 	t_list	*p;
 	t_list	*tag;
 	int		lowest;
 
-	p = *stack_a;
-	tag = *stack_a;
+	p = *stack;
+	tag = *stack;
 	lowest = p->cost;
 	while (p)
 	{
@@ -48,18 +48,18 @@ void	set_target_a(t_list **stack_a, t_list **stack_b)
 	{
 		t = *stack_b;
 		if (p->value < get_low(stack_b))
-			closest_smaller = get_big(stack_b);
+			closest_smaller = (long) get_big(stack_b);
 		else
 		{
-			closest_smaller = INT_MIN;
+			closest_smaller = (long) INT_MIN - 1;
 			while (t) 
 			{
 				if (t->value < p->value && t->value > closest_smaller)
-						closest_smaller = t->value;
+						closest_smaller = (long) t->value;
 				t = t->next;
 			}
 		}
-		p->target = closest_smaller;
+		p->target = (int) closest_smaller;
 		p = p->next;
 	}
 }
@@ -214,8 +214,6 @@ void	to_push_a(t_list **stack_a, t_list **stack_b)
 		rot_target_b(stack_b, target);
 	(*stack_a)->to_push = 0;
 	push_b(stack_a, stack_b);
-	if (target == get_big(stack_b))
-		rotate_b(stack_b);
 }
 
 void	set_target_b(t_list **stack_a, t_list **stack_b)
@@ -231,18 +229,18 @@ void	set_target_b(t_list **stack_a, t_list **stack_b)
 	{
 		t = *stack_a;
 		if (p->value > get_big(stack_a))
-			closest_bigger = get_low(stack_a);
+			closest_bigger = (long) get_low(stack_a);
 		else
 		{
-			closest_bigger = INT_MAX;
+			closest_bigger = (long) INT_MAX + 1;
 			while (t) 
 			{
 				if (t->value > p->value && t->value < closest_bigger)
-						closest_bigger = t->value;
+						closest_bigger = (long) t->value;
 				t = t->next;
 			}
 		}
-		p->target = closest_bigger;
+		p->target = (int) closest_bigger;
 		p = p->next;
 	}
 }
@@ -282,12 +280,6 @@ void	to_push_b(t_list **stack_a, t_list **stack_b)
 		rot_target_a(stack_a, target);
 	(*stack_b)->to_push = 0;
 	push_a(stack_a, stack_b);
-	/*if (target == get_low(stack_a))*/
-	/*	rotate_a(stack_a);*/
-	/*if ((*stack_a)->value < ft_lstlast(stack_a)->value)*/
-	/*	rev_rotate_b(stack_a);*/
-	/*if(p->target == get_big(stack_a))*/
-	/*	rotate_b(stack_a);*/
 }
 
 
@@ -301,20 +293,19 @@ void	greedy_sort(t_list **stack_a, t_list **stack_b, int size)
 	size = ft_lstsize(stack_a);
 	push_b(stack_a, stack_b);
 	push_b(stack_a, stack_b);
-	while (count < size)
+	while (count < size - 3)
 	{
 		to_push_a(stack_a, stack_b);
 		count++;
 	}
-	/*sort_three(stack_a);*/
-	sort_b(stack_a, stack_b);
-	/*while (count > 0)*/
-	/*{*/
-	/*	to_push_b(stack_a, stack_b);*/
-	/*	count--;*/
-	/*}*/
-	/*min_on_top(stack_a);*/
-	/*if (!check_sorted(stack_a))*/
-	/*	return (greedy_sort(stack_a, stack_b, size)) ;*/
+	sort_three(stack_a);
 	/*sort_b(stack_a, stack_b);*/
+	while (count > 0)
+	{
+		to_push_b(stack_a, stack_b);
+		count--;
+	}
+	min_on_top(stack_a);
+	if (!check_sorted(stack_a))
+		return (greedy_sort(stack_a, stack_b, size)) ;
 }
