@@ -113,17 +113,6 @@ void	set_cost(t_list **stack1, t_list **stack2)
 	}
 }	
 
-void	push_opp_double(t_list **stack_a, t_list **stack_b, t_list *p)
-{
-	t_list	*target;
-	
-	target = get_target(&p, stack_b);
-	if (p->above_m && target->above_m && (*stack_a)->value != p->value && (*stack_b)->value != target->value)
-		rotate_ab(stack_a, stack_b);
-	else if (!(p->above_m) && !(target->above_m) && (*stack_a)->value != p->value && (*stack_b)->value != target->value)
-		rev_rotate_ab(stack_a, stack_b);
-}	
-	
 void rot_topush_a(t_list **stack_a, t_list *p)
 {
 	if ((*stack_a)->value == p->value)
@@ -133,6 +122,50 @@ void rot_topush_a(t_list **stack_a, t_list *p)
 	else
 		rev_rotate_a(stack_a);
 }
+
+void	push_opp_a(t_list **stack_a, t_list **stack_b, t_list *p)
+{
+	t_list	*target;
+	int		value;
+	int		target_v;
+	
+	value = p->value;
+	target = get_target(&p, stack_b);
+	target_v = target->value;
+	if (p->above_m && target->above_m && (*stack_a)->value != value && (*stack_b)->value != target_v)
+		rotate_ab(stack_a, stack_b);
+	else if (!(p->above_m) && !(target->above_m) && (*stack_a)->value != value && (*stack_b)->value != target_v)
+		rev_rotate_ab(stack_a, stack_b);
+	else
+		rot_topush_a(stack_a, p);
+}	
+
+void rot_topush_b(t_list **stack_b, t_list *p)
+{
+	if ((*stack_b)->value == p->value)
+		return ;
+	if (p->above_m)
+		rotate_b(stack_b);
+	else
+		rev_rotate_b(stack_b);
+}
+
+void	push_opp_b(t_list **stack_a, t_list **stack_b, t_list *p)
+{
+	t_list	*target;
+	int		value;
+	int		target_v;
+	
+	value = p->value;
+	target = get_target(&p, stack_a);
+	target_v = target->value;
+	if (p->above_m && target->above_m && (*stack_b)->value != value && (*stack_a)->value != target_v)
+		rotate_ab(stack_a, stack_b);
+	else if (!(p->above_m) && !(target->above_m) && (*stack_b)->value != value && (*stack_a)->value != target_v)
+		rev_rotate_ab(stack_a, stack_b);
+	else
+		rot_topush_b(stack_b, p);
+}	
 
 void rot_target_b(t_list **stack_b, int target)
 {
@@ -149,15 +182,6 @@ void rot_target_b(t_list **stack_b, int target)
 		rev_rotate_b(stack_b);
 }
 
-void rot_topush_b(t_list **stack_b, t_list *p)
-{
-	if ((*stack_b)->value == p->value)
-		return ;
-	if (p->above_m)
-		rotate_b(stack_b);
-	else
-		rev_rotate_b(stack_b);
-}
 
 void rot_target_a(t_list **stack_a, int target)
 {
@@ -185,10 +209,9 @@ void	to_push_a(t_list **stack_a, t_list **stack_b)
 	value = p->value;
 	target = p->target;
 	while ((*stack_a)->value != value)
-		rot_topush_a(stack_a, p);
+		push_opp_a(stack_a, stack_b, p);
 	while ((*stack_b)->value != target)
 		rot_target_b(stack_b, target);
-		/*push_opp_double(stack_a, stack_b, p);*/
 	(*stack_a)->to_push = 0;
 	push_b(stack_a, stack_b);
 	if (target == get_big(stack_b))
@@ -224,6 +247,23 @@ void	set_target_b(t_list **stack_a, t_list **stack_b)
 	}
 }
 
+void	min_on_top(t_list **stack_a)
+{
+	int		lowest;
+	t_list	*p;
+	
+	p = *stack_a;
+	lowest	= get_low(stack_a);
+	while (p->value != lowest)
+		p = p->next;
+	while ((*stack_a)->value != lowest)
+	{
+		if (p->above_m)
+			rotate_a(stack_a);
+		else
+			rev_rotate_a(stack_a);
+	}
+}			
 
 void	to_push_b(t_list **stack_a, t_list **stack_b)
 {
@@ -237,19 +277,19 @@ void	to_push_b(t_list **stack_a, t_list **stack_b)
 	value = p->value;
 	target = p->target;
 	while ((*stack_b)->value != value)
-		rot_topush_a(stack_b, p);
+		push_opp_b(stack_a, stack_b, p);
 	while ((*stack_a)->value != target)
-		rot_target_b(stack_a, target);
-	/*push_opp_double(stack_b, stack_a, p);*/
+		rot_target_a(stack_a, target);
 	(*stack_b)->to_push = 0;
 	push_a(stack_a, stack_b);
-	if (target == get_low(stack_a))
-		rotate_a(stack_a);
+	/*if (target == get_low(stack_a))*/
+	/*	rotate_a(stack_a);*/
 	/*if ((*stack_a)->value < ft_lstlast(stack_a)->value)*/
 	/*	rev_rotate_b(stack_a);*/
 	/*if(p->target == get_big(stack_a))*/
 	/*	rotate_b(stack_a);*/
 }
+
 
 void	greedy_sort(t_list **stack_a, t_list **stack_b, int size)
 {
@@ -261,17 +301,19 @@ void	greedy_sort(t_list **stack_a, t_list **stack_b, int size)
 	size = ft_lstsize(stack_a);
 	push_b(stack_a, stack_b);
 	push_b(stack_a, stack_b);
-	while (count < size - 3)
+	while (count < size)
 	{
 		to_push_a(stack_a, stack_b);
 		count++;
 	}
-	sort_three(stack_a);
-	while (count > 0)
-	{
-		to_push_b(stack_a, stack_b);
-		count--;
-	}
+	/*sort_three(stack_a);*/
+	sort_b(stack_a, stack_b);
+	/*while (count > 0)*/
+	/*{*/
+	/*	to_push_b(stack_a, stack_b);*/
+	/*	count--;*/
+	/*}*/
+	/*min_on_top(stack_a);*/
 	/*if (!check_sorted(stack_a))*/
 	/*	return (greedy_sort(stack_a, stack_b, size)) ;*/
 	/*sort_b(stack_a, stack_b);*/

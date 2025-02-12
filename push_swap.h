@@ -93,7 +93,6 @@ int		get_big(t_list **stack_a);
 
 void	greedy_sort(t_list **stack_a, t_list **stack_b, int size);
 void	to_push_a(t_list **stack_a, t_list **stack_b);
-void	push_opp_a(t_list **stack_a, t_list *p);
 void	set_cost_a(t_list **stack_a, t_list **stack_b);
 int		find_cost_a(t_list **p, t_list **stack_a, t_list **stack_b);
 t_list	*set_to_push(t_list **stack_a);
