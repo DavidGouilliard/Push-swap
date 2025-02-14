@@ -82,6 +82,8 @@ int	ft_atoi(const char *str, int *i, t_list **begin)
 	}
 	while (str[*i] >= '0' && str[*i] <= '9')
 	{
+		if (res > INT_MAX)
+			atoi_error(begin);
 		res = res * 10 + str[*i] - '0';
 		++*i;
 	}
