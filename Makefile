@@ -1,5 +1,5 @@
 SRC		=	lst_utils.c  parse_arg.c  parse_arg_utils.c  push_swap_main.c utils.c swap.c push.c \
-			rotate.c rev_rotate.c sort.c big_sort.c greedy_algo.c
+			rotate.c rev_rotate.c sort.c greedy_algo.c greedy_cost_op.c greedy_op.c
 
 CFLAGS	=	-Wall -Werror -Wextra -I.
 

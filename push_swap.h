@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:10:07 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/15 18:42:58 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/02/14 03:12:33 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,30 @@ void	choose_sort(t_list **stack_a, t_list **stack_b);
 void	sort_two(t_list **stack_a);
 void	sort_three(t_list **stack_a);
 void	sort_four(t_list **stack_a, t_list **stack_b);
-void	sort_five(t_list **stack_a, t_list **stack_b);
-void	big_sort(t_list **stack_a, t_list **stack_b, int size);
 int		check_sorted(t_list **stack_a);
-void	quick_sort(t_list **stack);
-void	quick_sort_b(t_list **stack);
-void	double_sort(t_list **stack_a, t_list **stack_b);
-int		get_biggest(t_list **stack_a);
 
-
-void	sort_b(t_list ** stack_a, t_list **stack_b);
 int		get_low(t_list **stack_a);
 int		get_big(t_list **stack_a);
 
 void	greedy_sort(t_list **stack_a, t_list **stack_b, int size);
+
+void	set_target_a(t_list **stack_a, t_list **stack_b);
+void	set_target_b(t_list **stack_a, t_list **stack_b);
+
+int		find_cost(t_list **p, t_list **stack1, t_list **stack2);
+void	set_cost(t_list **stack1, t_list **stack2);
+
+t_list	*set_to_push(t_list **stack);
+t_list	*get_target(t_list **p, t_list **stack);
+
+void	rot_target_a(t_list **stack_a, t_list *t);
+void	rot_target_b(t_list **stack_b, t_list *t);
+void	push_opp_a(t_list **stack_a, t_list **stack_b, t_list *p, t_list *t);
+void	push_opp_b(t_list **stack_a, t_list **stack_b, t_list *p, t_list *t);
+
 void	to_push_a(t_list **stack_a, t_list **stack_b);
-void	set_cost_a(t_list **stack_a, t_list **stack_b);
-int		find_cost_a(t_list **p, t_list **stack_a, t_list **stack_b);
-t_list	*set_to_push(t_list **stack_a);
+void	to_push_b(t_list **stack_a, t_list **stack_b);
+
+void	min_on_top(t_list **stack_a);
 
 #endif

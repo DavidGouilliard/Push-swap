@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:31:59 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/15 18:03:16 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/02/14 03:23:04 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	rotate(t_list **stack)
 {
 	t_list	*p;
 	int		temp;
-	
+
 	temp = (*stack)->value;
 	p = *stack;
 	while (p->next)

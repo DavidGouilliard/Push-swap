@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:31:59 by dagouill          #+#    #+#             */
-/*   Updated: 2025/01/15 18:02:48 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/02/14 03:16:09 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rev_rotate(t_list **stack)
 	t_list	*p;
 	int		temp;
 	int		temp2;
-	
+
 	p = ft_lstlast(stack);
 	temp = p->value;
 	p = *stack;

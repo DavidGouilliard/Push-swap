@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:09:51 by dagouill          #+#    #+#             */
-/*   Updated: 2025/02/08 21:42:23 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/02/14 03:15:58 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,36 @@ void	ft_lstclear(t_list **lst)
 	*lst = NULL;
 }
 
-void	print_stacks(t_list *stack_a, t_list *stack_b)
+int	get_big(t_list **stack_a)
 {
+	int		big;
 	t_list	*p;
 
-	p = stack_a;
-	printf("stack_a\n");
-	while (p != NULL)
+	p = *stack_a;
+	big = p->value;
+	while (p)
 	{
-		printf("index:%d value:%d target:%d cost:%d above_m:%d to_push:%d\n", p->index, p->value, p->target, p->cost, p->above_m, p->to_push);
+		if (big < p->value)
+			big = p->value;
 		p = p->next;
 	}
-	p = stack_b;
-	printf("stack_b\n");
-	while (p != NULL)
+	return (big);
+}
+
+int	get_low(t_list **stack_a)
+{
+	int		low;
+	t_list	*p;
+
+	p = *stack_a;
+	low = p->value;
+	while (p)
 	{
-		printf("index:%d value:%d target:%d cost:%d above_m:%d to_push:%d\n", p->index, p->value, p->target, p->cost, p->above_m, p->to_push);
+		if (low > p->value)
+			low = p->value;
 		p = p->next;
 	}
+	return (low);
 }
 
 int	main(int ac, char **av)
@@ -58,9 +70,7 @@ int	main(int ac, char **av)
 		print_error();
 	stack_a = parse_arg(av);
 	choose_sort(&stack_a, &stack_b);
-	/*print_stacks(stack_a, stack_b);*/
 	ft_lstclear(&stack_a);
 	ft_lstclear(&stack_b);
 	return (0);
 }	
-
