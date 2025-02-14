@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 02:47:49 by dagouill          #+#    #+#             */
-/*   Updated: 2025/02/14 03:22:50 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/02/14 03:42:49 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -29,7 +29,6 @@ t_list	*set_to_push(t_list **stack)
 		}
 		p = p->next;
 	}
-	tag->to_push = 1;
 	return (tag);
 }
 

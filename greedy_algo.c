@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 14:19:32 by dagouill          #+#    #+#             */
-/*   Updated: 2025/02/14 03:20:35 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/02/14 03:43:07 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	to_push_a(t_list **stack_a, t_list **stack_b)
 		rot_target_a(stack_a, p);
 	while ((*stack_b)->value != target)
 		rot_target_b(stack_b, t);
-	(*stack_a)->to_push = 0;
 	push_b(stack_a, stack_b);
 }
 
@@ -72,7 +71,6 @@ void	to_push_b(t_list **stack_a, t_list **stack_b)
 		rot_target_b(stack_b, p);
 	while ((*stack_a)->value != target)
 		rot_target_a(stack_a, t);
-	(*stack_b)->to_push = 0;
 	push_a(stack_a, stack_b);
 }
 

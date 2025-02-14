@@ -6,7 +6,7 @@
 /*   By: dagouill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:10:07 by dagouill          #+#    #+#             */
-/*   Updated: 2025/02/14 03:12:33 by dagouill         ###   ########.fr       */
+/*   Updated: 2025/02/14 03:42:06 by dagouill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_list
 	int				target;
 	int				cost;
 	bool			above_m;
-	bool			to_push;
 
 	struct s_list	*next;
 }	t_list;
